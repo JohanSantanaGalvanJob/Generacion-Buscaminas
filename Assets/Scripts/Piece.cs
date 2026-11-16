@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Piece : MonoBehaviour
 {
@@ -7,6 +9,11 @@ public class Piece : MonoBehaviour
     public bool bomb;
 
     private void OnMouseDown() {
-        GetComponent<SpriteRenderer>().material.color = Color.green;
+        if (bomb) {
+            GetComponent<SpriteRenderer>().material.color = Color.green;
+        } else {
+            transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = Generator.gen.GetBombsAround(x, y).ToString();
+        }
+        
     }
 }
